@@ -12,7 +12,7 @@ steps:
   - name: deploy
     image: plugins/ansible:3
     settings:
-      inventory: .ansible/inventories/production
+      inventory: .ansible/inventories/production.yaml
       galaxy: .ansible/roles/requirements.yaml
       playbook: .ansible/deploy.yaml
       private_key:
