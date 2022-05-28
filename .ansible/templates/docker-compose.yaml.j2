@@ -13,7 +13,7 @@ services:
         - traefik.enable=true
         - traefik.http.services.grafana.loadbalancer.server.port=3000
         - traefik.http.routers.grafana.rule=Host(`{{ grafana_host }}`)
-        - traefik.http.routers.loki.tls.certresolver=step-ca
+        - traefik.http.routers.grafana.tls.certresolver=step-ca
         - traefik.http.routers.grafana.service=grafana
     networks:
       - {{ traefik_network }}
