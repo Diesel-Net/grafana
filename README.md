@@ -2,4 +2,6 @@
 
 # grafana
 
-Query, visualize, alert on, and understand your data no matter where it’s stored. With [Grafana](https://grafana.com/grafana/) you can create, explore and share all of your data through beautiful, flexible dashboards.
+[Grafana](https://grafana.com/grafana/) on Docker Swarm.
+
+Query, visualize, alert on, and understand your data no matter where it’s stored.
