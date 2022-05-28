@@ -1,0 +1,41 @@
+- hosts: manager
+  roles:
+    - common
+    - traefik
+  tasks:
+
+    - include_role:
+        name: common
+        tasks_from: make_config_dir
+
+    - include_role:
+        name: common
+        tasks_from: make_data_dir
+
+    # https://grafana.com/docs/grafana/latest/installation/docker/#migrate-to-v51-or-later
+    - file:
+        path: '{{ data_dir }}'
+        owner: '472'
+        group: '0'
+        mode: u=rwx,g=rx
+      become: yes
+
+    # - file:
+    #     path: '{{ config_dir }}'
+    #     owner: 472
+    #     group: 0
+    #     mode: u=rwx,g=rx
+    #   become: yes
+        
+    - include_role:
+        name: docker
+        tasks_from: stack_deploy
+      vars:
+        docker_compose_template: docker-compose.yaml.j2
+
+    # - include_role:
+    #     name: docker
+    #     tasks_from: service_update
+    #   vars:
+    #     options: --force
+    #     docker_service: grafana

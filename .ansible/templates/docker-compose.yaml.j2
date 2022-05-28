@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+
+  grafana:
+    image: grafana/grafana:8.5.2
+    volumes:
+      - {{ ssl_cert_file }}:/etc/ssl/certs/ca-certificates.crt
+      - {{ localtime_file }}:/etc/localtime
+      #- {{ config_dir }}:/etc/grafana
+      - {{ data_dir }}:/var/lib/grafana
+    deploy:
+      labels:
+        - traefik.enable=true
+        - traefik.http.services.grafana.loadbalancer.server.port=3000
+        - traefik.http.routers.grafana.rule=Host(`{{ grafana_host }}`)
+        - traefik.http.routers.grafana.tls.certresolver=step-ca
+        - traefik.http.routers.grafana.service=grafana
+    networks:
+      - {{ traefik_network }}
+
+networks:
+  {{ traefik_network }}:
+    external: true
+    name: {{ traefik_network }}

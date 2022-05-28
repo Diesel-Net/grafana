@@ -1,0 +1,12 @@
+all:
+  children:
+
+    manager:
+      hosts:
+        # grafana.diesel.net
+        tools.diesel.net:
+
+  vars:
+    grafana_host: grafana.diesel.net
+    ansible_user: automation
+    ansible_python_interpreter: /usr/bin/python3
