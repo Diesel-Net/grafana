@@ -8,5 +8,6 @@ all:
 
   vars:
     grafana_host: grafana.diesel.net
+    ldap_admin_password: "{{ lookup('env', 'LDAP_ADMIN_PASSWORD') }}"
     ansible_user: automation
     ansible_python_interpreter: /usr/bin/python3

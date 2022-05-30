@@ -12,7 +12,9 @@
         name: common
         tasks_from: make_data_dir
 
+    # notes on the file permissions: 
     # https://grafana.com/docs/grafana/latest/installation/docker/#migrate-to-v51-or-later
+
     - file:
         path: '{{ data_dir }}'
         owner: '472'
@@ -20,22 +22,40 @@
         mode: u=rwx,g=rx
       become: yes
 
-    # - file:
-    #     path: '{{ config_dir }}'
-    #     owner: 472
-    #     group: 0
-    #     mode: u=rwx,g=rx
-    #   become: yes
-        
+    - file:
+        path: '{{ config_dir }}'
+        owner: '472'
+        group: '0'
+        mode: u=rwx,g=rx,o=r
+      become: yes
+
+    - name: 'render grafana.ini.j2 to {{ config_dir }}/grafana.ini'
+      template:
+        src: grafana.ini.j2
+        dest: '{{ config_dir }}/grafana.ini'
+        owner: '472'
+        group: '0'
+        mode: u=rwx,g=rx
+      become: yes
+
+    - name: 'render ldap.toml.j2 to {{ config_dir }}/ldap.toml'
+      template:
+        src: ldap.toml.j2
+        dest: '{{ config_dir }}/ldap.toml'
+        owner: '472'
+        group: '0'
+        mode: u=rwx,g=rx
+      become: yes
+
     - include_role:
         name: docker
         tasks_from: stack_deploy
       vars:
         docker_compose_template: docker-compose.yaml.j2
 
-    # - include_role:
-    #     name: docker
-    #     tasks_from: service_update
-    #   vars:
-    #     options: --force
-    #     docker_service: grafana
+    - include_role:
+        name: docker
+        tasks_from: service_update
+      vars:
+        options: --force
+        docker_service: grafana

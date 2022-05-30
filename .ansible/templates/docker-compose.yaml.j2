@@ -2,11 +2,12 @@ version: '3.8'
 services:
 
   grafana:
-    image: grafana/grafana:8.5.2
+    image: grafana/grafana-oss:8.5.2
     volumes:
       - {{ ssl_cert_file }}:/etc/ssl/certs/ca-certificates.crt
       - {{ localtime_file }}:/etc/localtime
-      #- {{ config_dir }}:/etc/grafana
+      - {{ config_dir }}/grafana.ini:/etc/grafana/grafana.ini
+      - {{ config_dir }}/ldap.toml:/etc/grafana/ldap.toml
       - {{ data_dir }}:/var/lib/grafana
     deploy:
       labels:

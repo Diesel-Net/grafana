@@ -11,6 +11,9 @@ concurrency:
 steps:
   - name: deploy
     image: plugins/ansible:3
+    environment:
+      LDAP_ADMIN_PASSWORD:
+        from_secret: ldap_admin_password
     settings:
       inventory: .ansible/inventories/production.yaml
       galaxy: .ansible/roles/requirements.yaml
