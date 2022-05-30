@@ -41,7 +41,7 @@
     - name: 'render ldap.toml.j2 to {{ config_dir }}/ldap.toml'
       template:
         src: grafana.ini.j2
-        dest: '{{ config_dir }}/grafana.ini'
+        dest: '{{ config_dir }}/ldap.toml'
         owner: '472'
         group: '0'
         mode: u=rwx,g=rx
