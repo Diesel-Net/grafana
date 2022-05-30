@@ -1,0 +1,14 @@
+[[servers]]
+host = "ldap.diesel.net"
+port = 636
+use_ssl = true
+start_tls = false
+ssl_skip_verify = false
+bind_dn = "cn=admin,dc=diesel,dc=net"
+bind_password = "{{ ldap_admin_password }}"
+search_filter = "(uid=%s)"
+search_base_dns = ["dc=diesel,dc=net"]
+
+[servers.attributes]
+member_of = "memberOf"
+email =  "mail"
