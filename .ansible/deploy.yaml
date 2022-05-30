@@ -38,7 +38,7 @@
         mode: u=rwx,g=rx
       become: yes
 
-     name: 'render ldap.toml.j2 to {{ config_dir }}/ldap.toml'
+    - name: 'render ldap.toml.j2 to {{ config_dir }}/ldap.toml'
       template:
         src: grafana.ini.j2
         dest: '{{ config_dir }}/grafana.ini'
