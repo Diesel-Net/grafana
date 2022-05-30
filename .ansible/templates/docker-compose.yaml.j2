@@ -6,7 +6,7 @@ services:
     volumes:
       - {{ ssl_cert_file }}:/etc/ssl/certs/ca-certificates.crt
       - {{ localtime_file }}:/etc/localtime
-      - {{ config_dir }}:/etc/grafana
+      - {{ config_dir }}/grafana.ini:/etc/grafana/grafana.ini
       - {{ data_dir }}:/var/lib/grafana
     deploy:
       labels:
