@@ -20,22 +20,31 @@
         mode: u=rwx,g=rx
       become: yes
 
-    # - file:
-    #     path: '{{ config_dir }}'
-    #     owner: 472
-    #     group: 0
-    #     mode: u=rwx,g=rx
-    #   become: yes
-        
+    - file:
+        path: '{{ config_dir }}'
+        owner: '472'
+        group: '0'
+        mode: u=rwx,g=rx,o=r
+      become: yes
+
+    - name: render grafana.ini.j2 to {{ config_dir }}/grafana.ini
+      template:
+        src: grafana.ini.j2
+        dest: '{{ config_dir }}/grafana.ini'
+        owner: '472'
+        group: '0'
+        mode: u=rwx,g=rx
+      become: yes
+
     - include_role:
         name: docker
         tasks_from: stack_deploy
       vars:
         docker_compose_template: docker-compose.yaml.j2
 
-    # - include_role:
-    #     name: docker
-    #     tasks_from: service_update
-    #   vars:
-    #     options: --force
-    #     docker_service: grafana
+    - include_role:
+        name: docker
+        tasks_from: service_update
+      vars:
+        options: --force
+        docker_service: grafana
