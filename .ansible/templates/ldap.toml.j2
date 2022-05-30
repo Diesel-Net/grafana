@@ -16,12 +16,13 @@ group_search_base_dns = ["ou=groups,dc=diesel,dc=net"]
 [servers.attributes]
 member_of = "memberOf"
 email =  "mail"
-first_name = "givenName"
+name = "givenName"
 surname = "sn"
+name = "cn"
 username = "uid"
 
 [[servers.group_mappings]]
-group_dn = "cn=admins,ou=groups,dc=diesel,dc=net"
+group_dn = "cn=admin,ou=groups,dc=diesel,dc=net"
 org_role = "Admin"
 grafana_admin = true
 org_id = 1
