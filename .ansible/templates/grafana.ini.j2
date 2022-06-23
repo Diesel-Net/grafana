@@ -268,13 +268,13 @@
 ;disable_brute_force_login_protection = false
 
 # set to true if you host Grafana behind HTTPS. default is false.
-;cookie_secure = false
+cookie_secure = true
 
 # set cookie SameSite attribute. defaults to `lax`. can be set to "lax", "strict", "none" and "disabled"
 ;cookie_samesite = lax
 
 # set to true if you want to allow browsers to render Grafana in a <frame>, <iframe>, <embed> or <object>. default is false.
-;allow_embedding = false
+allow_embedding = true
 
 # Set to true if you want to enable http strict transport security (HSTS) response header.
 # HSTS tells browsers that the site should only be accessed using HTTPS.
@@ -296,11 +296,11 @@
 
 # Set to true to enable the X-XSS-Protection header, which tells browsers to stop pages from loading
 # when they detect reflected cross-site scripting (XSS) attacks.
-;x_xss_protection = true
+x_xss_protection = true
 
 # Enable adding the Content-Security-Policy header to your requests.
 # CSP allows to control resources the user agent is allowed to load and helps prevent XSS attacks.
-;content_security_policy = false
+content_security_policy = true
 
 # Set Content Security Policy template used when adding the Content-Security-Policy header to your requests.
 # $NONCE in the template includes a random nonce.

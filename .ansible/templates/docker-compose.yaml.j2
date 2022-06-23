@@ -9,6 +9,8 @@ services:
       - {{ config_dir }}/grafana.ini:/etc/grafana/grafana.ini
       - {{ config_dir }}/ldap.toml:/etc/grafana/ldap.toml
       - {{ data_dir }}:/var/lib/grafana
+    environment:
+      - GF_INSTALL_PLUGINS=grafana-piechart-panel
     deploy:
       labels:
         - traefik.enable=true
