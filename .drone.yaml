@@ -15,7 +15,7 @@ steps:
       LDAP_ADMIN_PASSWORD:
         from_secret: ldap_admin_password
     settings:
-      inventory: .ansible/inventories/production.yaml
+      inventory: .ansible/inventories/prod.yaml
       galaxy: .ansible/roles/requirements.yaml
       playbook: .ansible/deploy.yaml
       private_key:
