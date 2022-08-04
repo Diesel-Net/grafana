@@ -29,18 +29,18 @@
         mode: u=rwx,g=rx,o=r
       become: yes
 
-    - name: 'render grafana.ini.j2 to {{ config_dir }}/grafana.ini'
+    - name: 'render grafana.ini to {{ config_dir }}/grafana.ini'
       template:
-        src: grafana.ini.j2
+        src: grafana.ini
         dest: '{{ config_dir }}/grafana.ini'
         owner: '472'
         group: '0'
         mode: u=rwx,g=rx
       become: yes
 
-    - name: 'render ldap.toml.j2 to {{ config_dir }}/ldap.toml'
+    - name: 'render ldap.toml to {{ config_dir }}/ldap.toml'
       template:
-        src: ldap.toml.j2
+        src: ldap.toml
         dest: '{{ config_dir }}/ldap.toml'
         owner: '472'
         group: '0'
@@ -51,7 +51,7 @@
         name: docker
         tasks_from: stack_deploy
       vars:
-        docker_compose_template: docker-compose.yaml.j2
+        docker_compose_template: docker-compose.yaml
 
     - include_role:
         name: docker
