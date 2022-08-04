@@ -50,10 +50,11 @@
     - include_role:
         name: docker
         tasks_from: stack_deploy
+        apply:
+          become: yes
       vars:
         docker_compose_template: docker-compose.yaml
-      apply:
-        become: yes
+
 
     - include_role:
         name: docker
