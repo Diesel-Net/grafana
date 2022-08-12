@@ -26,6 +26,7 @@
     - name: make config subdir
       file:
         path: '{{ config_dir }}/files'
+        state: directory
         owner: '472'
         group: '0'
         mode: u=rwx,g=rx
