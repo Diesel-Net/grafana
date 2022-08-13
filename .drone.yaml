@@ -10,19 +10,18 @@ concurrency:
 
 steps:
   - name: deploy
-    image: plugins/ansible:3
+    image: docker.nexus.diesel.net/drone-ansible:2.13
     environment:
       LDAP_ADMIN_PASSWORD:
         from_secret: ldap_admin_password
     settings:
-      inventory: .ansible/inventories/production.yaml
+      inventory: .ansible/inventories/prod.yaml
       galaxy: .ansible/roles/requirements.yaml
       playbook: .ansible/deploy.yaml
       private_key:
         from_secret: automation_id_rsa
       vault_password:
         from_secret: ansible_vault_password
-      extra_vars: version=production
 trigger:
   branch:
     - development

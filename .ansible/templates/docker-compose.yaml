@@ -4,10 +4,10 @@ services:
   grafana:
     image: grafana/grafana-oss:8.5.2
     volumes:
-      - {{ ssl_cert_file }}:/etc/ssl/certs/ca-certificates.crt
-      - {{ localtime_file }}:/etc/localtime
-      - {{ config_dir }}/grafana.ini:/etc/grafana/grafana.ini
-      - {{ config_dir }}/ldap.toml:/etc/grafana/ldap.toml
+      - /etc/ssl/certs/ca-certificates.crt:/etc/ssl/certs/ca-certificates.crt
+      - /etc/localtime:/etc/localtime
+      - {{ config_dir }}/files/grafana.ini:/etc/grafana/grafana.ini
+      - {{ config_dir }}/files/ldap.toml:/etc/grafana/ldap.toml
       - {{ data_dir }}:/var/lib/grafana
     environment:
       - GF_INSTALL_PLUGINS=grafana-piechart-panel
