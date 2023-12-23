@@ -13,8 +13,10 @@ steps:
   - name: deploy (${DRONE_BRANCH}) -> dev
     image: docker.nexus.diesel.net/drone-ansible:7.2.0
     environment:
-      LDAP_ADMIN_PASSWORD:
-        from_secret: ldap_admin_password
+      SMTP_USERNAME:
+        from_secret: smtp_username
+      SMTP_PASSWORD:
+        from_secret: smtp_password
     settings:
       inventory: .ansible/inventories/dev.yaml
       galaxy: .ansible/roles/requirements.yaml
@@ -30,8 +32,10 @@ steps:
   - name: deploy (${DRONE_BRANCH}) -> prod
     image: docker.nexus.diesel.net/drone-ansible:7.2.0
     environment:
-      LDAP_ADMIN_PASSWORD:
-        from_secret: ldap_admin_password
+      SMTP_USERNAME:
+        from_secret: smtp_username
+      SMTP_PASSWORD:
+        from_secret: smtp_password
     settings:
       inventory: .ansible/inventories/prod.yaml
       galaxy: .ansible/roles/requirements.yaml
