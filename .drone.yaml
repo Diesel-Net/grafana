@@ -1,6 +1,6 @@
 kind: pipeline
 type: docker
-name: Build Grafana
+name: Deploy
 
 clone:
   depth: 1
@@ -9,11 +9,33 @@ concurrency:
   limit: 1
 
 steps:
-  - name: deploy
-    image: docker.nexus.diesel.net/drone-ansible:2.13
+  
+  - name: deploy (${DRONE_BRANCH}) -> dev
+    image: docker.nexus.diesel.net/drone-ansible:7.2.0
     environment:
-      LDAP_ADMIN_PASSWORD:
-        from_secret: ldap_admin_password
+      SMTP_USERNAME:
+        from_secret: smtp_username
+      SMTP_PASSWORD:
+        from_secret: smtp_password
+    settings:
+      inventory: .ansible/inventories/dev.yaml
+      galaxy: .ansible/roles/requirements.yaml
+      playbook: .ansible/deploy.yaml
+      private_key:
+        from_secret: automation_id_rsa
+      vault_password:
+        from_secret: ansible_vault_password
+    when:
+      branch:
+        - development
+
+  - name: deploy (${DRONE_BRANCH}) -> prod
+    image: docker.nexus.diesel.net/drone-ansible:7.2.0
+    environment:
+      SMTP_USERNAME:
+        from_secret: smtp_username
+      SMTP_PASSWORD:
+        from_secret: smtp_password
     settings:
       inventory: .ansible/inventories/prod.yaml
       galaxy: .ansible/roles/requirements.yaml
@@ -22,6 +44,11 @@ steps:
         from_secret: automation_id_rsa
       vault_password:
         from_secret: ansible_vault_password
+    when:
+      branch:
+        - stable
+
+
 trigger:
   branch:
     - development

@@ -1,0 +1,5 @@
+smtp_host: smtp.gmail.com
+smtp_port: 587
+
+smtp_username: '{{ lookup("env", "SMTP_USERNAME") }}'
+smtp_password: '{{ lookup("env", "SMTP_PASSWORD") }}'
