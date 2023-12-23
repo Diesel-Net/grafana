@@ -10,7 +10,7 @@ concurrency:
 
 steps:
   - name: deploy
-    image: docker.nexus.diesel.net/drone-ansible:2.13
+    image: docker.nexus.diesel.net/drone-ansible:7.2.0
     environment:
       LDAP_ADMIN_PASSWORD:
         from_secret: ldap_admin_password
