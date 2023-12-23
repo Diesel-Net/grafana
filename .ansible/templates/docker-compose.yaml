@@ -2,12 +2,12 @@ version: '3.8'
 services:
 
   grafana:
-    image: grafana/grafana-oss:8.5.2
+    image: grafana/grafana-oss:10.2.3
     volumes:
       - /etc/ssl/certs/ca-certificates.crt:/etc/ssl/certs/ca-certificates.crt
       - /etc/localtime:/etc/localtime
       - {{ config_dir }}/files/grafana.ini:/etc/grafana/grafana.ini
-      - {{ config_dir }}/files/ldap.toml:/etc/grafana/ldap.toml
+      #- {{ config_dir }}/files/ldap.toml:/etc/grafana/ldap.toml
       - {{ data_dir }}:/var/lib/grafana
     environment:
       - GF_INSTALL_PLUGINS=grafana-piechart-panel
