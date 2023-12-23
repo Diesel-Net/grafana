@@ -4,12 +4,12 @@ all:
     swarm_manager:
       hosts:
 
-        tools.diesel.net:
+        dev.diesel.net:
 
   vars:
 
-    kiwi_host: grafana.kiwi-labs.net
-    diesel_host: grafana.diesel.net
+    kiwi_host: grafana.dev.kiwi-labs.net
+    diesel_host: grafana.dev.diesel.net
 
     ansible_user: automation
     ansible_python_interpreter: /usr/bin/python3
