@@ -1,4 +1,4 @@
-- hosts: manager
+- hosts: swarm_manager
   roles:
     - application
     - traefik
